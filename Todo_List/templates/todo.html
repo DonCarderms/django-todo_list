@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My todos</title>
+  </head>
+  <body>
+    <h1>{{todo.title}}</h1>
+    <p>{{todo.description}}</p>
+    {% if todo.completed == True %}
+    <h3>concluída</h3>
+    {% else %}
+    <h3>não concluída</h3>
+    {% endif %}
+    <form action="{% url 'toComplete' todo.id %}" method="post">
+      {% csrf_token %}
+      <input type="text" hidden name="completed" id="completed" value="True" />
+      <input type="submit" value="marcar como concluída" />
+    </form>
+  </body>
+</html>

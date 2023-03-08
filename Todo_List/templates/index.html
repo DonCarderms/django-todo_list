@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todo-app</title>
+  </head>
+  <body>
+    <h1>oi bem vindo ao primeiro projeto django</h1>
+    <div>
+      <a href="{% url 'addTodo' %}">novo todo</a>
+    </div>
+    {% for todo in todo_list %}
+    <div class="" id="{{ todo.id}}">
+      <a href="{% url 'todo' todo.id %}">{{ todo.title }}</a>
+      <p>{{ todo.description }}</p>
+      {% if todo.completed == True %}
+      <h3>concluída</h3>
+      {% else %}
+      <h3>não concluída</h3>
+      {% endif %}
+      <a href="{% url 'editTodo' todo.id  %}">editar</a>
+      <a href="{% url 'excluirTodo' todo.id  %}">excluir</a>
+    </div>
+    {% endfor %}
+  </body>
+</html>
