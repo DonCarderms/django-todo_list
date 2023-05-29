@@ -1,14 +1,29 @@
 from django.shortcuts import render, redirect
 # from django.template import loader, Context
 from django.shortcuts import get_object_or_404
-from Todo_List.forms import newTodo
+from .forms import newTodo
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView 
+from .models import Todo
 
-from Todo_List.models import Todo
 
-# Create your views here.
-def index(request):
-    context = {'todo_list' : Todo.objects.all()}
-    return render(request, 'index.html', context)
+class index(ListView):
+    model = Todo
+    template_name = 'index.html'
+    context_object_name = 'todo_list'
+    
+    def get_queryset(self):
+        return Todo.objects.all()
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super(Todo, self).get_context_data(**kwargs)
+    #     context['todo_list'] = Todo.objects.all()
+    #     return context
+
+        
+        
+# def index(request):
+#     context = {'todo_list' : Todo.objects.all()}
+#     return render(request, 'index.html', context)
 
 def todo(request, pk):
     if str(request.user) != 'AnonymousUser':

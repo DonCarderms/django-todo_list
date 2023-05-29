@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>new todo</title>
-  </head>
-  <body>
-    <h1>edit todo</h1>
-    <form action="{% url 'editTodo' todo.id %}" method="post">
-      {% csrf_token %}
-      <label for="title"></label>
-      <input type="text" name="title" id="title" value="{{ todo.title}}" />
-      <label for="description"></label>
-      <input
-        type="text"
-        name="description"
-        id="description"
-        value="{{ todo.description }}"
-      />
-      <input type="submit" value="editar todo" />
-    </form>
-  </body>
-</html>
+{% extends "base.html" %} {% block content %}
+<h1>edit todo</h1>
+<form action="{% url 'editTodo' todo.id %}" method="post">
+  {% csrf_token %}
+  <label for="title"></label>
+  <input type="text" name="title" id="title" value="{{ todo.title}}" />
+  <label for="description"></label>
+  <input
+    type="text"
+    name="description"
+    id="description"
+    value="{{ todo.description }}"
+  />
+  <input type="submit" value="editar todo" />
+</form>
+{% endblock %}
